@@ -1,0 +1,33 @@
+<!-- Aayush Ghimire -->
+<!-- Zainab Al Tarouti -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+Enter the index
+ <input type="text" onchange="getArrayElement()" id="input">
+<br> <br>
+<div id="toChange"> Should see an array element on click or out of bounds </div>
+<script>
+var arrayIndex = document.getElementById("input");
+var elementToChange = document.getElementById("toChange");
+function getArrayElement() {
+
+var ajax = new XMLHttpRequest();
+ajax.open("GET","getOneArrayElement.php?index=" + arrayIndex.value, true);
+ ajax.send();
+ajax.onreadystatechange = function () {
+if (ajax.readyState == 4 && ajax.status == 200) {
+var str = JSON.parse(ajax.responseText);
+ 
+elementToChange.innerHTML = str;
+ }
+}; // End anonymous function
+}
+</script>
+
+</body>
+</html>
